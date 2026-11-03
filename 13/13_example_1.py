@@ -1,7 +1,7 @@
 # Источник: kompege.ru
 # id задачи: 31510
 
-# Создаём функцию с num(текущее чисо) и target(число,
+# Создаём функцию с num(текущее число) и target(число,
 # которое мы хотим получить)
 def f(num: int, target: int) -> int:
     if num == target:
@@ -20,6 +20,7 @@ def f(num: int, target: int) -> int:
         new_num = str_num[:-2] + str_num[-1] + str_num[-2]
         ways += f(int(new_num), target)
     return ways
+
 
 # Выводим ответ
 print(f(100, 141))

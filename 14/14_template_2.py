@@ -5,6 +5,8 @@
 
 BASE = 7
 MAX_X = 2030
+
+
 # Перевод из 10 в n систему счисления
 def to_base_n(num: int, to_base: int) -> list:
     result = []
@@ -13,14 +15,15 @@ def to_base_n(num: int, to_base: int) -> list:
         num //= to_base
     return list(reversed(result))
 
+
 # Выражение из условия задачи БЕЗ x
-expression = (7**170) + (7**100)
+expression = (7 ** 170) + (7 ** 100)
 # Далее мы перебираем все возможные x
-# Если нас справишают минимальный x то пишем 'for x in range(1, MAX_X + 1)'
-# Если нас справишают максимальный x то пишем 'for x in range(MAX_X, 0, -1)'
+# Если нас спрашивают минимальный x то пишем 'for x in range(1, MAX_X + 1)'
+# Если нас спрашивают максимальный x то пишем 'for x in range(MAX_X, 0, -1)'
 for x in range(MAX_X, 0, -1):
     # Далее пишем условие, указанного в задаче
-    # Потом переводим число в n сисему счисления с x
+    # Потом переводим число в n систему счисления с x
     if to_base_n(expression - x, BASE).count(0) == 70:
         # Выводим ответ
         print(x)

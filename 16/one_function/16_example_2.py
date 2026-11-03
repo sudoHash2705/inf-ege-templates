@@ -12,7 +12,7 @@
 from functools import lru_cache
 
 
-# далаем аннотацию 'lru_cache'
+# делаем аннотацию 'lru_cache'
 # подробнее об этой аннотации стоит прочитать в документации питона https://docs
 @lru_cache(maxsize=None)
 def f(n: int) -> int:

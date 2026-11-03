@@ -19,6 +19,7 @@ for i in range(start, len(ascii_lowercase) + start):
     char = ascii_lowercase[i - 10]
     LETTERS[char] = i
 
+
 # Функция, которая переводит из любой системы в 10
 def to_dec(num: list, from_base: int) -> int:
     num_10 = 0
@@ -29,6 +30,7 @@ def to_dec(num: list, from_base: int) -> int:
             raise ValueError(f"{digit} is bigger than number base: {from_base}")
         num_10 += digit * (from_base ** i)
     return num_10
+
 
 # Далее мы ищем x. Он ДОЛЖЕН быть меньше, чем система счисления
 # Если нам нужно найти минимальный x то пишем 'for x in range(BASE)'
@@ -42,4 +44,3 @@ for x in range(BASE):
         # Выводим ответ
         print(expression / DIVISOR)
         break
-    
