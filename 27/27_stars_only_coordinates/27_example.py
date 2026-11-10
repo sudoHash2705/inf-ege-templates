@@ -50,6 +50,8 @@ b_clusters = [[], [], []]
 # что x и y находятся в разных столбцах) и строим точеные графики
 
 # После этого уже распределяем звёзды по кластерам
+# Как я распределил кластеры можно посмотреть на скриншотах,
+# которые лежат на репозитории
 with open("27_A_29979.txt") as a_file, \
         open("27_B_29979.txt") as b_file:
     for line in a_file.readlines():
@@ -65,7 +67,7 @@ with open("27_A_29979.txt") as a_file, \
         cords = (float(parts[0]), float(parts[1]))
         if cords[0] > 25:
             b_clusters[0].append(Star(cords))
-        elif cords[1] < 20:
+        elif cords[1] < 25:
             b_clusters[1].append(Star(cords))
         else:
             b_clusters[2].append(Star(cords))
