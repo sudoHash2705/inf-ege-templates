@@ -8,8 +8,8 @@
 # и кластеризация будет происходить по кинетической энергии
 
 # Импортируем нужные библиотеки
-from math import dist
 from dataclasses import dataclass
+from math import dist
 
 
 # Дата-класс

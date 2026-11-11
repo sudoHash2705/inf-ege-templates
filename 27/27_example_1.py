@@ -6,6 +6,7 @@
 # Импортируем нужные библиотеки
 # Дата-класс
 from dataclasses import dataclass
+
 # Евклидово расстояние между 2 точками
 from math import dist
 
@@ -120,7 +121,7 @@ for cluster in clusters:
             star2 = stars_special_characteristic_2[j]
             distance = dist((star1.x, star1.y), (star2.x, star2.y))
             max_dist_sign2 = max(distance, max_dist_sign2)
-            
+
 # Q1 – наибольшее евклидово расстояние между частицами одного кластера, имеющими признак II
 q1 = max_dist_sign2
 # Q2 – максимальное значение кинетической энергии для центра кластера.
