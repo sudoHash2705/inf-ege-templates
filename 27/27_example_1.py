@@ -5,7 +5,7 @@
 
 # Импортируем нужные библиотеки
 # Дата-класс
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 # Евклидово расстояние между 2 точками
 from math import dist
 
@@ -29,11 +29,6 @@ class Star:
     vy: float
     m: float
     special_characteristic: int
-    # Кинетическую энергию нужно рассчитать, поэтому как параметр
-    # его передавать не надо
-    # только надо ОБЯЗАТЕЛЬНО передать что это field(init=False)
-    # а иначе будет ошибка!
-    kinetic_energy: float = field(init=False)
 
     def get_kinetic_energy(self) -> float:
         return 0.5 * self.m * (self.vx ** 2 + self.vy ** 2)
