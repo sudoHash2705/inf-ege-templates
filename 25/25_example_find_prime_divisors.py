@@ -1,3 +1,6 @@
+# kompege.ru
+# 31519
+
 from math import isqrt
 
 START_NUM = 1_103_285_717
@@ -22,20 +25,34 @@ def has_one_element(n: int, element: str) -> bool:
     return str(n).count(element) == 1
 
 
-result = {}
-current_num = START_NUM + 2
-while len(result) < 5:
-    max_limit = isqrt(current_num) + 1
+def find_prime_divisors(n: int) -> tuple[int, int] | None:
+    if not (n & 1):
+        return None
+
+    max_limit = isqrt(n) + 1
     for first_divisor in range(3, max_limit, 2):
-        if current_num % first_divisor == 0:
-            second_divisor = current_num // first_divisor
+        if n % first_divisor == 0:
+            second_divisor = n // first_divisor
 
-            if has_one_element(first_divisor, "16") and has_one_element(second_divisor, "16"):
-                if is_prime(first_divisor) and is_prime(second_divisor):
-                    result[current_num] = first_divisor
+            if not has_one_element(first_divisor, "16") or \
+                    not has_one_element(second_divisor, "16"):
+                break
 
-            break
+            if not is_prime(first_divisor) or \
+                    not is_prime(second_divisor):
+                break
 
-    current_num += 2
+            return first_divisor, second_divisor
+
+    return None
+
+
+result = {}
+current_num = START_NUM + 1
+while len(result) < 5:
+    divisors = find_prime_divisors(current_num)
+    if divisors:
+        result[current_num] = min(divisors)
+    current_num += 1
 
 print(result)
