@@ -51,7 +51,7 @@ def find_m(n: int) -> int:
     if len(divisors) < 2:
         return 0
 
-    return sum(divisors[-2:])
+    return divisors[-1] - divisors[0]
 
 
 current_num = START_NUM + 1
