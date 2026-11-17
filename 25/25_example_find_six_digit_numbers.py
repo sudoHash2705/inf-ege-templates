@@ -11,8 +11,8 @@ DIVISOR = 197
 
 # Число нужно представить в виде степени 5 и чётного числа
 # Например 29 можно представить в виде 5**2 + 4
-# В это функции мы это проверяем и возвращаем степень
-def find_valid_power(n: int) -> int | None:
+# В этой функции мы это проверяем и возвращаем степень
+def find_valid_power_five(n: int) -> int | None:
     current_power = 1
     while 5 ** current_power < n:
         remainder = n - 5 ** current_power
@@ -30,11 +30,11 @@ for current_num in range(START_NUM + 1, END_NUM):
     if str(current_num).count("1") != 0:
         continue
 
-    power = find_valid_power(current_num)
+    power = find_valid_power_five(current_num)
     if power:
         result[current_num] = power
 
-    # Если сы нашли первые 7 чисел, выходим из цикла
+    # Если нашлись первые 7 чисел, выходим из цикла
     if len(result) == 7:
         break
 
