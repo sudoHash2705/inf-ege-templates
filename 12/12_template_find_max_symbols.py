@@ -1,3 +1,4 @@
+# 25302
 from enum import Enum
 
 
@@ -38,7 +39,7 @@ def find_remaining_symbols(seq: str, find_symbol: Symbols) -> int:
     while True:
         if head < 0 or head >= len(tape):
             raise ValueError("HEAD cannot be < 0 or >= length tape")
-        
+
         current_symbol = tape.get(head, Symbols.LAMBDA)
         new_symbol, command, new_state = PROGRAMS[(state, current_symbol)]
         tape[head] = new_symbol
