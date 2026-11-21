@@ -46,6 +46,9 @@ state = States.Q_0
 head = len(BORDERS) - 1
 
 while True:
+    if head < 0 or head >= len(tape):
+        raise ValueError("HEAD cannot be < 0 or >= length tape")
+
     current_symbol = tape.get(head, Symbols.LAMBDA)
     new_symbol, command, new_state = PROGRAMS[(state, current_symbol)]
 
