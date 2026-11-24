@@ -27,18 +27,17 @@ def is_prime(n: int) -> bool:
 
     # Проверяем нечётные делители до квадрата исходного числа + 1
     limit = isqrt(n) + 1
-
-    for i in range(3, limit, 2):
-        if n % i == 0:
-            return False
-
-    return True
+    return all(n % i != 0 for i in range(3, limit, 2))
+    # for i in range(3, limit, 2):
+    #     if n % i == 0:
+    #         return False
+    #
+    # return True
 
 
 # Пусть М - разность максимального и минимального простых натуральных делителей
 # целого числа, не считая самого числа
 def find_m(n: int) -> int:
-
     divisors = []
 
     if not (n & 1):
@@ -49,6 +48,7 @@ def find_m(n: int) -> int:
 
     # Здесь представлен алгоритм нахождения простых делителей
     factor = 3
+    # умножение НАМНОГО быстрее, чем возведение в степень
     while factor * factor <= n:
         if n % factor == 0:
             divisors.append(factor)

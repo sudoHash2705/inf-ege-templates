@@ -2,7 +2,7 @@
 # id задачи: 29938
 
 # Все шестизначные числа
-START_NUM = 99_999
+START_NUM = 100_000
 END_NUM = 1_000_000
 
 # делитель по условию задачи
@@ -25,7 +25,7 @@ def find_valid_power_five(n: int) -> int | None:
 
 
 result = {}
-for current_num in range(START_NUM + 1, END_NUM):
+for current_num in range(START_NUM, END_NUM):
     # Нам нужны числа не имеющие в своей записи 1
     if str(current_num).count("1") != 0:
         continue
