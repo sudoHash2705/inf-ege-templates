@@ -21,8 +21,7 @@ def is_prime(n: int) -> bool:
         return True
 
     # Чётные числа не являются простыми(кроме 2, но мы это учли выше)
-    # & 1 альтернатива % 2
-    if not (n & 1):
+    if n % 2 == 0:
         return False
 
     # Проверяем нечётные делители до квадрата исходного числа + 1
@@ -40,11 +39,10 @@ def is_prime(n: int) -> bool:
 def find_m(n: int) -> int:
     divisors = []
 
-    if not (n & 1):
+    if n % 2 == 0:
         divisors.append(2)
-        while not n & 1:
-            # >>= 1 альтернатива n //= 2
-            n >>= 1
+        while n % 2 == 0:
+            n //= 2
 
     # Здесь представлен алгоритм нахождения простых делителей
     factor = 3

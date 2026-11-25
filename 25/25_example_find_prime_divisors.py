@@ -20,8 +20,7 @@ def is_prime(n: int) -> bool:
         return True
 
     # Чётные числа не являются простыми(кроме 2, но мы это учли выше)
-    # & 1 альтернатива % 2
-    if not (n & 1):
+    if n % 2 == 0:
         return False
 
     # Проверяем нечётные делители до квадрата исходного числа + 1
@@ -43,7 +42,7 @@ def has_one_element(n: int, element: str) -> bool:
 def find_prime_divisors(n: int) -> tuple[int, int] | None:
     # Такие большие чётные числа нельзя представить
     # в виде произведения двух простых чисел
-    if not (n & 1):
+    if n % 2 == 0:
         return None
 
     max_limit = isqrt(n) + 1

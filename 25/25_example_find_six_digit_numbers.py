@@ -16,7 +16,7 @@ def find_valid_power_five(n: int) -> int | None:
     current_power = 1
     while 5 ** current_power < n:
         remainder = n - 5 ** current_power
-        if not (remainder & 1) and remainder > 0 and \
+        if remainder % 2 == 0 and remainder > 0 and \
                 remainder % DIVISOR == 0:
             return current_power
         current_power += 1
