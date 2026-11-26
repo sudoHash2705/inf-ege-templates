@@ -8,10 +8,14 @@
 
 # Для того чтобы 'отобразить' алгоритм из условия задачи, нам
 # понадобится класс Enum
+
+# Почему Enum? Если вы будете решать кодом 12 номер на ЕГЭ,
+# когда вы будете писать алгоритм из условия задачи, то есть шанс
+# ошибиться, поэтому лучше обращаться к элементам из Enum
 from enum import Enum
 
 
-# Класс состояний(может больше или меньше чем здесь!)
+# Класс состояний(может больше или меньше состояний чем здесь!)
 class States(Enum):
     Q_0 = "q0"
     Q_1 = "q1"
@@ -50,10 +54,11 @@ PROGRAMS = {
 
 def find_remaining_symbols(seq: str, find_symbol: Symbols) -> int:
     initial_tape = BORDERS + seq + BORDERS
-    # Тут мы разбиваем каждый символ на отдельные индексы начиная с 0
+    # Тут мы разбиваем нашу строку на символы, у каждого символа
+    # свой индекс, начиная с 0
     tape = {i: Symbols(ch) for i, ch in enumerate(initial_tape)}
     # Текущее состояние алгоритма
-    state = States.Q_0
+    current_state = States.Q_0
     # В начальный момент времени головка расположена в
     # ближайшей ячейке справа от последовательности.
     head = len(initial_tape) - len(BORDERS)
@@ -67,12 +72,12 @@ def find_remaining_symbols(seq: str, find_symbol: Symbols) -> int:
         # Получаем текущий символ
         current_symbol = tape.get(head, Symbols.LAMBDA)
         # Получаем новый символ, команду и новое состояние
-        new_symbol, command, new_state = PROGRAMS[(state, current_symbol)]
+        new_symbol, command, new_state = PROGRAMS[(current_state, current_symbol)]
 
         # Заменяем символ
         tape[head] = new_symbol
         # Меняем состояние
-        state = new_state
+        current_state = new_state
 
         # Сдвигаем головку
         if command == Commands.LEFT:
@@ -91,6 +96,20 @@ result_count = float("-inf")
 # Идём в порядке убывания, так как нас просят МАКСИМАЛЬНОЕ кол-во
 for zeros in range(SYMBOLS_COUNT, -1, -1):
     ones = SYMBOLS_COUNT - zeros
+    # Тут мы пишем последовательность из 0 и 1. Единой последовательности,
+    # которая решает все прототипы этого номера нет, но вот
+    # на что стоит обратить внимание при решении таких прототипов:
+
+    # 1) Надо посмотреть, на каком символе программа останавливается,
+    # КРОМЕ ЛЯМБД.
+
+    # 2) Так как нам нужно максимальное кол-во нулей или единиц, то
+    # В большинстве случаев сначала идут те символы,
+    # которые прерывают программу, а потом — символы,
+    # которые программу не прерывают(но всё равно лучше всё перепроверить 1000 раз).
+    #
+    # 3) Ну и наконец, записать эту последовательность из нулей и единиц.
+    #
     sequence = Symbols.ONE * ones + Symbols.ZERO * zeros
     # Если нашли, прерываем цикл
     if find_remaining_symbols(sequence, Symbols.ONE) == TARGET_SYMBOLS_COUNT:

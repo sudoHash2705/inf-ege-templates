@@ -8,10 +8,14 @@
 
 # Для того чтобы 'отобразить' алгоритм из условия задачи, нам
 # понадобится класс Enum
+
+# Почему Enum? Если вы будете решать кодом 12 номер на ЕГЭ,
+# когда вы будете писать алгоритм из условия задачи, то есть шанс
+# ошибиться, поэтому лучше обращаться к элементам из Enum
 from enum import Enum
 
 
-# Класс состояний(может больше или меньше чем здесь!)
+# Класс состояний(может больше или меньше состояний чем здесь!)
 class States(Enum):
     Q_0 = "q0"
     Q_1 = "q1"
@@ -56,11 +60,12 @@ PROGRAMS = {
 binary_num = bin(INPUT_NUM)[2:]
 # тут мы добавляем к числу границы и виде лямбд
 initial_tape = BORDERS + binary_num + BORDERS
-# Тут мы разбиваем каждый символ на отдельные индексы начиная с 0
+# Тут мы разбиваем нашу строку на символы, у каждого символа
+# свой индекс, начиная с 0
 tape = {i: Symbols(char) for i, char in enumerate(initial_tape)}
 
 # Текущее состояние алгоритма
-state = States.Q_0
+current_state = States.Q_0
 # В начальный момент времени головка расположена в
 # ближайшей слева к последовательности ячейке.
 head = len(BORDERS) - 1
@@ -74,12 +79,12 @@ while True:
     # Получаем текущий символ
     current_symbol = tape.get(head, Symbols.LAMBDA)
     # Получаем новый символ, команду и новое состояние
-    new_symbol, command, new_state = PROGRAMS[(state, current_symbol)]
+    new_symbol, command, new_state = PROGRAMS[(current_state, current_symbol)]
 
     # Заменяем символ
     tape[head] = new_symbol
     # Меняем состояние
-    state = new_state
+    current_state = new_state
 
     # Сдвигаем головку
     if command == Commands.LEFT:
@@ -90,7 +95,7 @@ while True:
         break
 
 # Выводим ответ
-result_binary = ''.join(
+result_bin = "".join(
     tape[i] for i in tape if tape[i] != Symbols.LAMBDA
 )
-print(int(result_binary, 2))
+print(int(result_bin, 2))
